@@ -1,4 +1,5 @@
 const { Product: ProductModel } = require('../models/Product')
+const cloudinary = require('../api/cloudinary')
 
 const productController = {
 
@@ -15,7 +16,22 @@ const productController = {
                 productOwner,
             } = req.body
 
-            const response = await ProductModel.create(req.body);
+            const file = req.files.productPic
+
+            const result = await cloudinary.uploader.upload(file.tempFilePath, {
+                folder: 'products',
+            })
+
+            const response = await ProductModel.create({
+                productName,
+                productPic: { public_id: result.public_id, url: result.secure_url },
+                productCond,
+                productDesc,
+                productTags,
+                productPrice,
+                productQtd,
+                productOwner,
+            });
 
             res.status(201).json({ response, msg: 'Produto cadastrado!' });
 

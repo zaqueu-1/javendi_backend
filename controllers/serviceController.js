@@ -1,4 +1,5 @@
 const { Service: ServiceModel } = require('../models/Service')
+const cloudinary = require('../api/cloudinary')
 
 const serviceController = {
 
@@ -13,7 +14,20 @@ const serviceController = {
                 serviceOwner,
             } = req.body
 
-            const response = await ServiceModel.create(req.body);
+            const file = req.files.servicePic
+
+            const result = await cloudinary.uploader.upload(file.tempFilePath, {
+                folder: 'services',
+            })
+
+            const response = await ServiceModel.create({
+               serviceName,
+               servicePic: {public_id: result.public_id, url: result.secure_url},
+               serviceDesc,
+               serviceTags,
+               servicePrice,
+               serviceOwner,
+            });
 
             res.status(201).json({ response, msg: 'Serviço cadastrado!' });
 
