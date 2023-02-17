@@ -1,3 +1,3 @@
-const index = require('./api/index')
+const index = require('./api/index');
 
-index()
+index();
