@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const fileupload = require('express-fileupload');
 const cors = require('cors');
 const db = require('../db/db');
@@ -8,11 +7,12 @@ const app = express();
 
 function main() {
     app.use(cors());
-    db();
+    app.use(express);
     app.use(express.json({limit : 52428800, extended : true}));
     app.use(express.urlencoded({limit : 52428800, extended : true}));
     app.use(fileupload({useTempFiles: true}));
     app.use('/api', routes);
+    db();
 
     app.listen(9001, function() {
         console.log('🪓')
