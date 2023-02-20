@@ -16,9 +16,7 @@ const productController = {
                 productOwner,
             } = req.body
 
-            const file = req.files.productPic
-
-            const result = await cloudinary.uploader.upload(file.tempFilePath, {
+            const result = await cloudinary.uploader.upload(productPic, {
                 folder: 'products',
             })
 

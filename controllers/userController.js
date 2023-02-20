@@ -66,8 +66,9 @@ const userController = {
     update: async(req, res) => {
         try {
             const id = req.params.id
+            const user = await UserModel.findById(id, '-userPass')
 
-            const {userName, userFullName, userEmail, userPass} = req.body
+            const {userName, userBirth, userEmail, userPhone, userAddress, userCity} = req.body
 
             const updatedUser = await UserModel.findByIdAndUpdate(id, req.body)
 

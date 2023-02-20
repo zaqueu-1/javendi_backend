@@ -14,9 +14,7 @@ const serviceController = {
                 serviceOwner,
             } = req.body
 
-            const file = req.files.servicePic
-
-            const result = await cloudinary.uploader.upload(file.tempFilePath, {
+            const result = await cloudinary.uploader.upload(servicePic, {
                 folder: 'services',
             })
 
@@ -29,7 +27,7 @@ const serviceController = {
                serviceOwner,
             });
 
-            res.status(201).json({ response, msg: 'Serviço cadastrado!' });
+            res.status(201).json({ response, msg: 'Serviço cadasttrado!' });
 
         } catch (error) {
             console.log(error)

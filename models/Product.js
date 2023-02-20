@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
     productName: { type: String, required: true },
-    productPic: {public_id: { type: String, required: false }, url: { type: String, required: false }},
+    productPic: {public_id: { type: String, required: true }, url: { type: String, required: true }},
     productCond: { type: String, required: true },
     productDesc: { type: String, required: true },
     productTags: { type: String, required: false },
