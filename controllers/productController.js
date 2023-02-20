@@ -1,5 +1,5 @@
 const { Product: ProductModel } = require('../models/Product')
-const cloudinary = require('../api/cloudinary')
+const cloudinary = require('../cloudinary/cloudinary')
 
 const productController = {
 

@@ -1,5 +1,5 @@
 const { Service: ServiceModel } = require('../models/Service')
-const cloudinary = require('../api/cloudinary')
+const cloudinary = require('../cloudinary/cloudinary')
 
 const serviceController = {
 
