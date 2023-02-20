@@ -12,7 +12,7 @@ const userController = {
             res.status(200).json({ msg: 'Usuário já cadastrado!' })
         } else {
             try {
-                const {userName, userFullName, userEmail, userPass} = req.body
+                const {userName, userEmail, userPass} = req.body
                 const response = await UserModel.create(req.body);
     
                 res.status(201).json({ response, msg: 'Cadastrado com sucesso!' });
